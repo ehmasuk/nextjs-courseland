@@ -3,8 +3,8 @@
 
 const nextConfig = {
     env: {
-        NEXT_PUBLIC_DOMAIN : "http://localhost:3000",
-        DOMAIN : "http://localhost:3000"
+        NEXT_PUBLIC_DOMAIN : "https://nextjs-courseland.vercel.app",
+        DOMAIN : "https://nextjs-courseland.vercel.app"
     },
     images: {
         remotePatterns: [
