@@ -2,6 +2,10 @@
 
 
 const nextConfig = {
+    env: {
+        NEXT_PUBLIC_DOMAIN : "http://localhost:3000",
+        DOMAIN : "http://localhost:3000"
+    },
     images: {
         remotePatterns: [
             {

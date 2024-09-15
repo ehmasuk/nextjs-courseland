@@ -10,7 +10,9 @@ const getData = async (url) => {
 };
 
 async function Page() {
-    const courses = await getData("/api/courses");
+    // const courses = await getData("/api/courses");
+
+    const courses = []
 
     return (
         <div>
