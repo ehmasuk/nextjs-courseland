@@ -1,16 +1,12 @@
+import { fetchData } from "@/actions/fetchActions";
 import AddToCartBtn from "@/components/AddToCartBtn";
 import { Rate } from "antd";
 
 import { Clock, Play, ShoppingBasket, Video } from "lucide-react";
 import Image from "next/image";
 
-const getData = async (url) => {
-    const res = await fetch(process.env.NEXT_PUBLIC_DOMAIN + url);
-    return await res.json();
-};
-
 async function CoursDetails({ params }) {
-    const course = await getData("/api/courses?slug=" + params.courseSlug);
+    const course = await fetchData("/courses?slug=" + params.courseSlug);
 
     if (!course) {
         redirect("/");

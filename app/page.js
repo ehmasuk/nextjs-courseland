@@ -1,18 +1,12 @@
+import { fetchData } from "@/actions/fetchActions";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { Rate } from "antd";
 import Image from "next/image";
 import Link from "next/link";
 
-const getData = async (url) => {
-    const res = await fetch(process.env.NEXT_PUBLIC_DOMAIN + url);
-    return await res.json();
-};
-
 async function Page() {
-    // const courses = await getData("/api/courses");
-
-    const courses = []
+    const courses = await fetchData("/courses");
 
     return (
         <div>

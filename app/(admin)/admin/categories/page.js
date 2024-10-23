@@ -1,13 +1,9 @@
+import { fetchData } from "@/actions/fetchActions";
 import AddCategory from "@/components/AddCategory";
 import HandleDeleteBtn from "@/components/HandleDeleteBtn";
 
-const getAllCategories = async () => {
-    const res = await fetch(process.env.NEXT_PUBLIC_DOMAIN + "/api/categories", { cache: "no-store" });
-    return await res.json();
-};
-
 async function Categories() {
-    const categories = await getAllCategories();
+    const categories = await fetchData("/categories");
 
     return (
         <div>

@@ -1,15 +1,11 @@
+import { fetchData } from "@/actions/fetchActions";
 import AddCourse from "@/components/AddCourse";
 import HandleDeleteBtn from "@/components/HandleDeleteBtn";
 import Image from "next/image";
 
-const getData = async (url) => {
-    const res = await fetch(process.env.NEXT_PUBLIC_DOMAIN + url, { cache: "no-store" });
-    return await res.json();
-};
-
 async function Courses() {
-    const categories = await getData("/api/categories");
-    const courses = await getData("/api/courses");
+    const categories = await fetchData("/categories");
+    const courses = await fetchData("/courses");
 
     return (
         <div>

@@ -1,12 +1,10 @@
+import { fetchData } from "@/actions/fetchActions";
 import { Rate } from "antd";
 import Image from "next/image";
 import Link from "next/link";
-const getData = async (url) => {
-    const res = await fetch(process.env.NEXT_PUBLIC_DOMAIN + url);
-    return await res.json();
-};
+
 async function Page() {
-    const courses = await getData("/api/courses");
+    const courses = await fetchData("/courses");
 
     return (
         <div className="max-w-screen-xl mx-auto py-10">
