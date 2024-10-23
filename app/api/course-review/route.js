@@ -2,14 +2,14 @@
 import courseReviewModal from "@/lib/modals/courseReviewModal";
 import { NextResponse } from "next/server";
 export const GET = async () => {
-    return NextResponse.json({message:"working"}, { status: 200 });
-    // try {
-    //     const reviews = await courseReviewModal.find();
-    //     return NextResponse.json(reviews, { status: 200 });
-    // } catch (error) {
-    //     console.log(error);
-    //     return NextResponse.json({ message: error.message }, { status: 400 });
-    // }
+    // return NextResponse.json({message:"working"}, { status: 200 });
+    try {
+        const reviews = await courseReviewModal.find();
+        return NextResponse.json(reviews, { status: 200 });
+    } catch (error) {
+        console.log(error);
+        return NextResponse.json({ message: error.message }, { status: 400 });
+    }
 };
 // export const POST = async (req) => {
 //     const { userId, courseId, review, rating } = await req.json();
