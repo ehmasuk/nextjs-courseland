@@ -1,19 +1,28 @@
 
-import { connectDb } from "@/lib/connectDb";
+
 import chategoryModel from "@/lib/modals/chategoryModel";
+import prisma from "@/prisma/prisma";
 import { NextResponse } from "next/server";
 import slugify from "slugify";
 
 
 export const GET = async () => {
     
+    // try {
+    //     const categories = await chategoryModel.find();
+    //     return NextResponse.json(categories, { status: 200 });
+    // } catch (error) {
+    //     console.log(error);
+    //     return NextResponse.json({ message: error.message }, { status: 400 });
+    // }
     try {
-        const categories = await chategoryModel.find();
+        const categories = await prisma.categories.findMany();
         return NextResponse.json(categories, { status: 200 });
     } catch (error) {
         console.log(error);
         return NextResponse.json({ message: error.message }, { status: 400 });
     }
+
 };
 
 export const POST = async (req) => {

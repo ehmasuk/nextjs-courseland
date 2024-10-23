@@ -26,16 +26,16 @@ export const POST = async (req) => {
         return NextResponse.json({ message: error.message }, { status: 400 });
     }
 };
-// export const DELETE = async (req) => {
-//     const serachParams = req.nextUrl.searchParams;
-//     const id = serachParams.get("id");
-//     if (!id) {
-//         return NextResponse.json({ message: "Id not found" }, { status: 400 });
-//     }
-//     try {
-//         await courseReviewModal.findByIdAndDelete(id);
-//         return NextResponse.json({ message: "Review deleted" }, { status: 200 });
-//     } catch (error) {
-//         return NextResponse.json({ message: error.message }, { status: 400 });
-//     }
-// };
+export const DELETE = async (req) => {
+    const serachParams = req.nextUrl.searchParams;
+    const id = serachParams.get("id");
+    if (!id) {
+        return NextResponse.json({ message: "Id not found" }, { status: 400 });
+    }
+    try {
+        await courseReviewModal.findByIdAndDelete(id);
+        return NextResponse.json({ message: "Review deleted" }, { status: 200 });
+    } catch (error) {
+        return NextResponse.json({ message: error.message }, { status: 400 });
+    }
+};
