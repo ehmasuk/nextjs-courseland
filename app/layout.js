@@ -1,10 +1,8 @@
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
+import { connectDb } from "@/lib/connectDb";
 import StoreProvider from "@/lib/redux/StoreProvider";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import { connectDb } from "@/lib/connectDb";
 
 await connectDb();
 
@@ -20,11 +18,7 @@ export default function RootLayout({ children }) {
         <html lang="en">
             <StoreProvider>
                 <AntdRegistry>
-                    <body className={poppins.className}>
-                        
-                        {children}
-                        
-                    </body>
+                    <body className={poppins.className}>{children}</body>
                 </AntdRegistry>
             </StoreProvider>
         </html>

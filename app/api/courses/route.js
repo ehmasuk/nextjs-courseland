@@ -52,7 +52,6 @@ export const POST = async (req) => {
         return NextResponse.json({ message: error.message }, { status: 400 });
     }
 };
-export const PUT = async () => {};
 
 export const DELETE = async (req) => {
     const serachParams = req.nextUrl.searchParams;

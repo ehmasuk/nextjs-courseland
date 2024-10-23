@@ -1,11 +1,12 @@
 
+import { connectDb } from "@/lib/connectDb";
 import chategoryModel from "@/lib/modals/chategoryModel";
 import { NextResponse } from "next/server";
 import slugify from "slugify";
 
 
-
 export const GET = async () => {
+    
     try {
         const categories = await chategoryModel.find();
         return NextResponse.json(categories, { status: 200 });
