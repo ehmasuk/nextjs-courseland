@@ -4,22 +4,23 @@ import { NextResponse } from "next/server";
 import slugify from "slugify";
 
 export const GET = async (req) => {
-    const searchParams = req.nextUrl.searchParams;
+    return NextResponse.json({msg:"works"}, { status: 200 });
+    // const searchParams = req.nextUrl.searchParams;
 
-    const slug = searchParams.get("slug");
+    // const slug = searchParams.get("slug");
 
-    try {
-        if (slug) {
-            const courses = await courseModal.findOne({ slug });
-            return NextResponse.json(courses, { status: 200 });
-        }
+    // try {
+    //     if (slug) {
+    //         const courses = await courseModal.findOne({ slug });
+    //         return NextResponse.json(courses, { status: 200 });
+    //     }
 
-        const courses = await courseModal.find();
-        return NextResponse.json(courses, { status: 200 });
-    } catch (error) {
-        console.log(error);
-        return NextResponse.json({ message: error.message }, { status: 400 });
-    }
+    //     const courses = await courseModal.find();
+    //     return NextResponse.json(courses, { status: 200 });
+    // } catch (error) {
+    //     console.log(error);
+    //     return NextResponse.json({ message: error.message }, { status: 400 });
+    // }
 };
 
 export const POST = async (req) => {
