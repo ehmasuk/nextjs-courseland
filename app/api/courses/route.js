@@ -1,5 +1,6 @@
 import courseModal from "@/lib/modals/courseModal";
 import uploadCloudinary from "@/lib/uploadCloudinary";
+import prisma from "@/prisma/prisma";
 import { NextResponse } from "next/server";
 import slugify from "slugify";
 
@@ -10,11 +11,11 @@ export const GET = async (req) => {
 
     try {
         if (slug) {
-            const courses = await courseModal.findOne({ slug });
+            const courses = await prisma.courses.findUnique({ where: { slug } });
             return NextResponse.json(courses, { status: 200 });
         }
 
-        const courses = await courseModal.find();
+        const courses = await prisma.courses.findMany();
         return NextResponse.json(courses, { status: 200 });
     } catch (error) {
         console.log(error);

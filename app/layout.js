@@ -1,9 +1,7 @@
-
 import StoreProvider from "@/lib/redux/StoreProvider";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "600"] });
 

@@ -1,20 +1,8 @@
-
-
-import chategoryModel from "@/lib/modals/chategoryModel";
 import prisma from "@/prisma/prisma";
 import { NextResponse } from "next/server";
 import slugify from "slugify";
 
-
 export const GET = async () => {
-    
-    // try {
-    //     const categories = await chategoryModel.find();
-    //     return NextResponse.json(categories, { status: 200 });
-    // } catch (error) {
-    //     console.log(error);
-    //     return NextResponse.json({ message: error.message }, { status: 400 });
-    // }
     try {
         const categories = await prisma.categories.findMany();
         return NextResponse.json(categories, { status: 200 });
@@ -22,7 +10,6 @@ export const GET = async () => {
         console.log(error);
         return NextResponse.json({ message: error.message }, { status: 400 });
     }
-
 };
 
 export const POST = async (req) => {
@@ -38,7 +25,8 @@ export const POST = async (req) => {
             trim: true,
         });
 
-        await chategoryModel.create({ name, slug });
+        await prisma.categories.create({ data: { name, slug } });
+
         return NextResponse.json({ message: "Category created" }, { status: 200 });
     } catch (error) {
         console.log(error);
@@ -53,7 +41,7 @@ export const DELETE = async (req) => {
         return NextResponse.json({ message: "Id not found" }, { status: 400 });
     }
     try {
-        await chategoryModel.findByIdAndDelete(id);
+        await prisma.categories.delete({ where: { id } });
         return NextResponse.json({ message: "Category deleted" }, { status: 200 });
     } catch (error) {
         return NextResponse.json({ message: error.message }, { status: 400 });
