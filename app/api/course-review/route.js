@@ -1,10 +1,8 @@
-
-import courseReviewModal from "@/lib/modals/courseReviewModal";
+import prisma from "@/prisma/prisma";
 import { NextResponse } from "next/server";
 export const GET = async () => {
-    
     try {
-        const reviews = await courseReviewModal.find();
+        const reviews = await prisma.coursereviews.findMany();
         return NextResponse.json(reviews, { status: 200 });
     } catch (error) {
         console.log(error);
@@ -19,7 +17,7 @@ export const POST = async (req) => {
     }
 
     try {
-        await courseReviewModal.create({ userId, courseId, review, rating });
+        await prisma.coursereviews.create({ data: { userId, courseId, review, rating } });
         return NextResponse.json({ data: "Review created" }, { status: 200 });
     } catch (error) {
         console.log(error);
@@ -33,7 +31,7 @@ export const DELETE = async (req) => {
         return NextResponse.json({ message: "Id not found" }, { status: 400 });
     }
     try {
-        await courseReviewModal.findByIdAndDelete(id);
+        await prisma.coursereviews.delete({ where: { id } });
         return NextResponse.json({ message: "Review deleted" }, { status: 200 });
     } catch (error) {
         return NextResponse.json({ message: error.message }, { status: 400 });

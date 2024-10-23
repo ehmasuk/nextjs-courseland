@@ -39,7 +39,7 @@ model categories {
     updatedAt DateTime @updatedAt
 }
 
-model courseReviews {
+model coursereviews {
     id        String   @id @default(auto()) @map("_id") @db.ObjectId
     userId    String
     courseId  String

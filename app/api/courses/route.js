@@ -1,4 +1,3 @@
-import courseModal from "@/lib/modals/courseModal";
 import uploadCloudinary from "@/lib/uploadCloudinary";
 import prisma from "@/prisma/prisma";
 import { NextResponse } from "next/server";
@@ -45,7 +44,7 @@ export const POST = async (req) => {
             return NextResponse.json({ message: "cannot upload image to cloudinay" }, { status: 400 });
         }
 
-        await courseModal.create({ title, price, description, image: result.secure_url, categoryId, slug });
+        await prisma.courses.create({ data: { title, price, description, image: result.secure_url, categoryId, slug } });
 
         return NextResponse.json({ message: "Course created succesfully", data: result }, { status: 200 });
     } catch (error) {
@@ -61,7 +60,7 @@ export const DELETE = async (req) => {
         return NextResponse.json({ message: "Id not found" }, { status: 400 });
     }
     try {
-        await courseModal.findByIdAndDelete(id);
+        await prisma.courses.delete({ where: { id } });
         return NextResponse.json({ message: "Course deleted" }, { status: 200 });
     } catch (error) {
         return NextResponse.json({ message: error.message }, { status: 400 });

@@ -1,19 +1,16 @@
 import { connectDb } from "@/lib/connectDb";
 import { compareToken } from "@/lib/jwtToken";
 import userModal from "@/lib/modals/userModal";
-import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
-await connectDb()
+await connectDb();
 
 export const GET = async (req) => {
-
-    const token = req.headers.get('token')
+    const token = req.headers.get("token");
 
     if (!token) {
         return NextResponse.json({ message: "Please login first" }, { status: 400 });
     }
-
 
     const validToken = compareToken(token);
 
